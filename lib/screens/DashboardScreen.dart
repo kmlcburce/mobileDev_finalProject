@@ -15,24 +15,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
             title: Text("Dashboard"),
             actions: <Widget>[
               Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SettingsScreen()));
-                    },
-                    child: Icon(
-                      Icons.settings,
-                      size: 26.0,
-                    ),
-                  )),
+                padding: EdgeInsets.only(right: 20.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SettingsScreen()));
+                  },
+                  child: Icon(
+                    Icons.settings,
+                    size: 26.0,
+                  ),
+                ),
+              ),
             ]),
         body: Container(
           padding: EdgeInsets.symmetric(horizontal: 20.0),
           child: Center(
-            child: Text("ありがとう、スタックオバフロー。よい経験になりました"),
+            children: Text("ありがとう、スタックオバフロー。よい経験になりました"),
           ),
         ));
   }
