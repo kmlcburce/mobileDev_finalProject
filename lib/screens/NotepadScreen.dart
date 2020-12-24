@@ -39,45 +39,46 @@ class NoteFormFieldBuilder extends StatelessWidget {
     final titleController = TextEditingController(text: title);
     final messageController = TextEditingController(text: message);
 
-    return Column(
-      children: <Widget>[
-        TextFormField(
-            controller: titleController,
+    return Scaffold(
+      body: Column(
+        children: <Widget>[
+          TextFormField(
+              controller: titleController,
+              decoration: const InputDecoration(
+                  hintText: 'Title Here', labelText: 'Title'),
+              validator: (value) {
+                if (value.isEmpty) {
+                  return "Enter text here";
+                }
+                return "Text here please";
+              }),
+          TextFormField(
+            controller: messageController,
             decoration: const InputDecoration(
-                hintText: 'Title Here', labelText: 'Title'),
+                hintText: 'Talk about something!', labelText: 'Message'),
             validator: (value) {
               if (value.isEmpty) {
-                return "Enter text here";
+                return "Please enter some text";
               }
-              return "Text here please";
-            }),
-        TextFormField(
-          controller: messageController,
-          decoration: const InputDecoration(
-              hintText: 'Talk about something!', labelText: 'Message'),
-          validator: (value) {
-            if (value.isEmpty) {
-              return "Please enter some text";
-            }
-            return null;
-          },
-          maxLines: null,
-          keyboardType: TextInputType.multiline,
-        ),
-        RaisedButton(
-          child: Text('Submit'),
-          onPressed: () async {
-            //final notesModel = context.read<NoteModel>();
+              return null;
+            },
+            maxLines: null,
+            keyboardType: TextInputType.multiline,
+          ),
+          RaisedButton(
+            child: Text('Submit'),
+            onPressed: () async {
+              //final notesModel = context.read<NoteModel>();
 
-            String title = titleController.text;
-            String message = messageController.text;
+              String title = titleController.text;
+              String message = messageController.text;
 
-            bool isCreating; //= (note?.id == null);
+              bool isCreating; //= (note?.id == null);
 
-            if (isCreating) {
-              //notesModel.createNewNote({"title": title, "message": message});
-            } else {
-              /*
+              if (isCreating) {
+                //notesModel.createNewNote({"title": title, "message": message});
+              } else {
+                /*
               Notes activeNotes =
                   Provider.of<NoteModel>(context, listen: false).getActiveNotes;
 
@@ -87,12 +88,12 @@ class NoteFormFieldBuilder extends StatelessWidget {
               await Provider.of<NoteModel>(context, listen: false)
                   .saveActiveNoteEdits();
               */
-            }
-
-            Navigator.pop(context);
-          },
-        ),
-      ],
+              }
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
     );
   }
 }
