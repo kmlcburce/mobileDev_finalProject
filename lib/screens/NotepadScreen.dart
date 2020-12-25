@@ -11,18 +11,20 @@ class _NotepadScreenState extends State<NotepadScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blueAccent,
-          title: Text("Note Title or smth"),
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        title: Text("Note Title or smth"),
+      ),
+      body: SingleChildScrollView(
+        child: Form(
+          key: _formKey,
+          child: Container(
+            padding: EdgeInsets.all(15),
+            child: new NoteFormFieldBuilder(),
+          ),
         ),
-        body: SingleChildScrollView(
-          child: Form(
-              key: _formKey,
-              child: Container(
-                padding: EdgeInsets.all(15),
-                child: new NoteFormFieldBuilder(),
-              )),
-        ));
+      ),
+    );
   }
 }
 

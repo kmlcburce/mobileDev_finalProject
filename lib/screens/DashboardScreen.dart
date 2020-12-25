@@ -83,33 +83,46 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         content: Stack(
                           overflow: Overflow.visible,
                           children: <Widget>[
-                            TextFormField(
-                              //controller here
-                              decoration: const InputDecoration(
-                                  hintText: 'Add a title', labelText: 'title'),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Please enter a title";
-                                }
-                                return "Text Please";
-                              },
-                            ),
-                            TextFormField(
-                              //controller here
-                              decoration: const InputDecoration(
-                                  hintText: 'Add Text', labelText: 'text'),
-                              validator: (value) {
-                                if (value.isEmpty) {
-                                  return "Please enter a text";
-                                }
-                                return "Text Please";
-                              },
-                            ),
-                            RaisedButton(
-                              child: Text('Add Note'),
-                              onPressed: () async {
-                                Navigator.pop(context);
-                              },
+                            Form(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                          hintText: 'Add a title',
+                                          labelText: 'title'),
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return "Please enter a title";
+                                        }
+                                        return "Text Please";
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: TextFormField(
+                                      decoration: const InputDecoration(
+                                          hintText: 'Add Text',
+                                          labelText: 'text'),
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return "Please enter a text";
+                                        }
+                                        return "Text Please";
+                                      },
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: RaisedButton(
+                                        child: Text("Create Notepad"),
+                                        onPressed: () {}),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import './screens/NotepadForm.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: DashboardScreen(),
-  ));
+  runApp(
+    MaterialApp(
+      home: NotepadScreen(),
+    ),
+  );
 }
