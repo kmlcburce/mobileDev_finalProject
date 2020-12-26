@@ -47,8 +47,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       buttonColor: Colors.white,
       child: RaisedButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AccountSettings()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AccountSettings()));
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

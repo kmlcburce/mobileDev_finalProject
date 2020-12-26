@@ -1,7 +1,6 @@
 import 'package:final_project/components/AuthenticationService.dart';
 import 'package:final_project/screens/DashboardScreen.dart';
 import 'package:final_project/screens/LoginScreen.dart';
-import 'package:final_project/screens/NotepadScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
