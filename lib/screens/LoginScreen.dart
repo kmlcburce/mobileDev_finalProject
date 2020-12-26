@@ -1,4 +1,8 @@
+import 'dart:js';
+
+import 'package:final_project/components/AuthenticationService.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import './RegisterScreen.dart';
 import 'DashboardScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -9,6 +13,9 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
   bool obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -23,35 +30,105 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Center(
             child: SingleChildScrollView(
               child: Form(
-                  child: Column(
-                children: [
-                  emailField(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  passwordField(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  submitButton(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [newUserButton()],
-                  ),
-                ],
-              )),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      //firebase email Controller
+                      controller: emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        prefixIcon: Container(
+                          child: Icon(Icons.email),
+                        ),
+                        labelText: "Email",
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    TextFormField(
+                      //firebase password controller
+                      controller: passwordController,
+                      obscureText: obscureText,
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        prefixIcon: Container(
+                          child: Icon(Icons.lock),
+                        ),
+                        labelText: "Password",
+                        suffixIcon: GestureDetector(
+                          child: Icon(obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onTap: () {
+                            setState(() {
+                              obscureText = !obscureText;
+                            });
+                          },
+                        ),
+                        border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30.0)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    ButtonTheme(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      height: 50.0,
+                      child: RaisedButton(
+                        onPressed: () {
+                          //firebase magic in the works
+                          context.read<AuthenticationService>().signIn(
+                              email: emailController.text,
+                              password: passwordController.text);
+                        },
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 10.0,
+                            ),
+                            Text("Login"),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        FlatButton(
+                            onPressed: () {
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegisterScreen()));
+                            },
+                            child: Text("New User? Register here"))
+                      ],
+                    ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
       ),
     );
   }
+}
 
-  TextFormField emailField() {
+/*
+ TextFormField emailField() {
     return TextFormField(
+      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         prefixIcon: Container(
@@ -65,6 +142,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   TextFormField passwordField() {
     return TextFormField(
+      controller:  passwordController,
       obscureText: obscureText,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
@@ -86,35 +164,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   ButtonTheme submitButton() {
-    return ButtonTheme(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30.0),
-      ),
-      height: 50.0,
-      child: RaisedButton(
-        onPressed: () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => DashboardScreen()));
-        },
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 10.0,
-            ),
-            Text("Login"),
-          ],
-        ),
-      ),
-    );
+    return 
   }
 
-  FlatButton newUserButton() {
-    return FlatButton(
-        onPressed: () {
-          Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => RegisterScreen()));
-        },
-        child: Text("New User? Register here"));
-  }
-}
+  
+*/

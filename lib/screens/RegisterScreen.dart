@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'LoginScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:final_project/components/AuthenticationService.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -8,6 +10,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController cpasswordController = TextEditingController();
+
   bool obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -24,10 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Form(
                   child: Column(
                 children: [
-                  uNameField(),
-                  SizedBox(
-                    height: 20.0,
-                  ),
                   emailField(),
                   SizedBox(
                     height: 20.0,
@@ -55,6 +57,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   TextFormField emailField() {
     return TextFormField(
+      controller: emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
         prefixIcon: Container(
@@ -68,6 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   TextFormField passwordField() {
     return TextFormField(
+      controller: passwordController,
       obscureText: obscureText,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
@@ -90,6 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   TextFormField cPasswordField() {
     return TextFormField(
+      controller: cpasswordController,
       obscureText: obscureText,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
@@ -118,8 +123,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
       height: 50.0,
       child: RaisedButton(
         onPressed: () {
-          Navigator.pushReplacement(
-              context, MaterialPageRoute(builder: (context) => LoginScreen()));
+          if (cpasswordController.text == passwordController.text) {
+            context.read<AuthenticationService>().signUp(
+                email: emailController.text, password: passwordController.text);
+          } else {
+            return "Incorrect input of password/confirmed password";
+          }
         },
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -130,19 +139,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
             Text("Register"),
           ],
         ),
-      ),
-    );
-  }
-
-  TextFormField uNameField() {
-    return TextFormField(
-      keyboardType: TextInputType.name,
-      decoration: InputDecoration(
-        prefixIcon: Container(
-          child: Icon(Icons.people),
-        ),
-        labelText: "Username",
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(30.0)),
       ),
     );
   }
