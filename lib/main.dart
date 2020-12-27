@@ -9,8 +9,8 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   //initializes the firebase addon
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  
   runApp(MyApp());
 }
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class AuthenticationWrapper extends StatelessWidget {
+class AuthenticationWrapper extends StatelessWidget{
   @override
   const AuthenticationWrapper({
     Key key,
@@ -48,11 +48,10 @@ class AuthenticationWrapper extends StatelessWidget {
 
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User>();
-    
     if (firebaseUser != null) {
       return DashboardScreen();
     }
-
     return LoginScreen();
-  }
+  } 
 }
+
