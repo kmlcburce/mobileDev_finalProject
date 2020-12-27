@@ -6,10 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-Future<void> main() async {
+void main() async {
   //initializes the firebase addon
   await Firebase.initializeApp();
-  
+
   runApp(MyApp());
 }
 
@@ -40,14 +40,8 @@ class AuthenticationWrapper extends StatelessWidget {
   }) : super(key: key);
 
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     final Firebaseuser = context.watch<User>();
     if (Firebaseuser != null) {
-=======
-    final firebaseUser = context.watch<User>();
-    
-    if (firebaseUser != null) {
->>>>>>> 6374beb6ff2e53e9d4338400ab4d5bfc96eae7c8
       return DashboardScreen();
     }
     return LoginScreen();
