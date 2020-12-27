@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
       height: 50.0,
       child: RaisedButton(
-        onPressed: () {
+        onPressed: () async {
           context.read<AuthenticationService>().signIn(
                 email: emailController.text,
                 password: passwordController.text,

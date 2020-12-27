@@ -8,8 +8,8 @@ import 'package:firebase_core/firebase_core.dart';
 
 void main() async {
   //initializes the firebase addon
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(MyApp());
 }
 
@@ -40,8 +40,8 @@ class AuthenticationWrapper extends StatelessWidget {
   }) : super(key: key);
 
   Widget build(BuildContext context) {
-    final Firebaseuser = context.watch<User>();
-    if (Firebaseuser != null) {
+    final firebaseUser = context.watch<User>();
+    if (firebaseUser != null) {
       return DashboardScreen();
     }
     return LoginScreen();
