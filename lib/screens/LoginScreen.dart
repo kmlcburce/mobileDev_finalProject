@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:final_project/components/AuthenticationService.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
