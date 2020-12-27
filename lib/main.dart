@@ -10,7 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 Future<void> main() async {
   //initializes the firebase addon
   await Firebase.initializeApp();
-
+  
   runApp(MyApp());
 }
 
@@ -47,9 +47,9 @@ class AuthenticationWrapper extends StatelessWidget {
   }) : super(key: key);
 
   Widget build(BuildContext context) {
-    final FirebaseUser = context.watch<User>();
-
-    if (FirebaseUser != null) {
+    final firebaseUser = context.watch<User>();
+    
+    if (firebaseUser != null) {
       return DashboardScreen();
     }
 
