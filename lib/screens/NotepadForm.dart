@@ -23,13 +23,13 @@ class NoteFormFieldBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final note = Provider.of<NoteModel>(context, listen: false).getActiveNotes;
+    //final note = Provider.of<NoteModel>(context, listen: false).getActiveNotes;
+    
+    //String title = note?.title ?? "";
+    //String message = note?.message ?? "";
 
-    String title = note?.title ?? "";
-    String message = note?.message ?? "";
-
-    final titleController = TextEditingController(text: title);
-    final messageController = TextEditingController(text: message);
+    //final titleController = TextEditingController(text: title);
+    //final messageController = TextEditingController(text: message);
 
     return Column(
       children: <Widget>[
@@ -59,7 +59,7 @@ class NoteFormFieldBuilder extends StatelessWidget {
         RaisedButton(
           child: Text('Submit'),
           onPressed: () async {
-            final notesModel = context.read<NoteModel>();
+            //final notesModel = context.read<NoteModel>();
 
             String title = titleController.text;
             String message = messageController.text;
@@ -69,14 +69,16 @@ class NoteFormFieldBuilder extends StatelessWidget {
             if (isCreating) {
               notesModel.createNewNote({"title": title, "message": message});
             } else {
+              /*
               Notes activeNotes =
                   Provider.of<NoteModel>(context, listen: false).getActiveNotes;
-
+              
               activeNotes.title = title;
               activeNotes.message = message;
-
+              /*
               await Provider.of<NoteModel>(context, listen: false)
                   .saveActiveNoteEdits();
+              S*/
             }
 
             Navigator.pop(context);
