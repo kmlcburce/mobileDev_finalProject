@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import './DashboardScreen.dart';
 
 class NotepadScreen extends StatefulWidget {
@@ -35,13 +34,11 @@ class NoteFormFieldBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final note = Provider.of<NoteModel>(context, listen: false).getActiveNotes;
+    /*final note = Provider.of<NoteModel>(context, listen: false).getActiveNotes;
 
     String title; //= note?.title ?? "";
     String message; // = note?.message ?? "";
-
-    final titleController = TextEditingController(text: title);
-    final messageController = TextEditingController(text: message);
+    */
 
     return Scaffold(
       body: LayoutBuilder(

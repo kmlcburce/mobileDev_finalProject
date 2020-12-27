@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'LoginScreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:final_project/components/AuthenticationService.dart';
 import 'package:provider/provider.dart';
 

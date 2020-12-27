@@ -1,11 +1,9 @@
 import 'package:final_project/components/AuthenticationService.dart';
 import 'package:final_project/screens/DashboardScreen.dart';
 import 'package:final_project/screens/LoginScreen.dart';
-import 'package:final_project/screens/NotepadScreen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import './screens/NotepadForm.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
@@ -18,8 +16,6 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement
-
     return MultiProvider(
       providers: [
         Provider<AuthenticationService>(
@@ -31,10 +27,6 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
         home: AuthenticationWrapper(),
       ),
     );
@@ -48,12 +40,10 @@ class AuthenticationWrapper extends StatelessWidget {
   }) : super(key: key);
 
   Widget build(BuildContext context) {
-    final FirebaseUser = context.watch<User>();
-
-    if (FirebaseUser != null) {
+    final Firebaseuser = context.watch<User>();
+    if (Firebaseuser != null) {
       return DashboardScreen();
     }
-
     return LoginScreen();
   }
 }

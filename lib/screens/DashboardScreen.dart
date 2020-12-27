@@ -1,9 +1,7 @@
 import 'package:final_project/components/AuthenticationService.dart';
 import 'package:flutter/material.dart';
 import 'SettingsScreen.dart';
-import 'NotepadForm.dart';
-import 'LoginScreen.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
